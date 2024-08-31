@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tricycle Reservation System</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Tricycle Reservation System</h1>
+
+        <!-- Step 1: Select Departure Details -->
+        <div id="step-1" class="form-step">
+            <h2>Step 1: Select Departure Details</h2>
+            <label for="departure-time">Departure Time:</label>
+            <input type="datetime-local" id="departure-time" required>
+
+            <label for="departure-location">Pick Up Point:</label>
+            <select id="departure-location" required>
+                <option value="Mamatid Tricycle Terminal">Mamatid Tricycle Terminal</option>
+            </select>
+
+            <label for="arrival-location">Destination:</label>
+            <select id="arrival-location" required>
+                <option value="Mabuhay">Mabuhay</option>
+                <option value="Buena Rosario">Buena Rosario</option>
+                <option value="St. Vincent College of Cabuyao">St. Vincent College of Cabuyao</option>
+                <option value="Mamatid Brgy. Hall">Mamatid Brgy. Hall</option>
+            </select>
+
+            <button onclick="nextStep(2)">Next</button>
+        </div>
+
+        <!-- Step 2: Enter Customer Information -->
+        <div id="step-2" class="form-step">
+            <h2>Step 2: Enter Customer Information</h2>
+            <label for="customer-name">Full Name:</label>
+            <input type="text" id="customer-name" required>
+
+            <label for="contact-number">Contact Number:</label>
+            <input type="tel" id="contact-number" required>
+
+            <label for="email">Email:</label>
+            <input type="email" id="email" required>
+
+            <button onclick="nextStep(3)">Next</button>
+        </div>
+
+        <!-- Step 3: Select Number of Passengers -->
+        <div id="step-3" class="form-step">
+            <h2>Step 3: Select Number of Passengers</h2>
+            <label for="num-passengers">Number of Passengers (max 4):</label>
+            <input type="number" id="num-passengers" min="1" max="4" required>
+
+            <button onclick="checkAvailability()">Check Availability</button>
+            <div id="availability"></div>
+
+            <button onclick="nextStep(4)">Next</button>
+        </div>
+
+        <!-- Step 4: Select Payment Method -->
+        <div id="step-4" class="form-step">
+            <h2>Step 4: Payment Method</h2>
+            <label for="payment-method">Select Payment Method:</label>
+            <select id="payment-method" required>
+                <option value="Gcash">Gcash</option>
+                <option value="Credit Card">Credit Card</option>
+            </select>
+
+            <button onclick="generateTicket()">Confirm & Generate Ticket</button>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
+

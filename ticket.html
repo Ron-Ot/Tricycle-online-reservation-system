@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Virtual Ticket</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container ticket-container">
+        <h1>Virtual Ticket</h1>
+        <div id="ticket-details"></div>
+        <button onclick="window.location.href='index.html'">Back to Reservation</button>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            try {
+                const ticketInfo = JSON.parse(localStorage.getItem('ticketInfo'));
+
+                if (ticketInfo) {
+                    document.getElementById('ticket-details').innerHTML = `
+                        <p><strong>Departure Time:</strong> ${ticketInfo.departureTime}</p>
+                        <p><strong>Pick Up Point:</strong> ${ticketInfo.departureLocation}</p>
+                        <p><strong>Destination:</strong> ${ticketInfo.arrivalLocation}</p>
+                        <p><strong>Customer Name:</strong> ${ticketInfo.customerName}</p>
+                        <p><strong>Contact Number:</strong> ${ticketInfo.contactNumber}</p>
+                        <p><strong>Email:</strong> ${ticketInfo.email}</p>
+                        <p><strong>Number of Passengers:</strong> ${ticketInfo.numPassengers}</p>
+                        <p><strong>Payment Method:</strong> ${ticketInfo.paymentMethod}</p>
+                        <p><strong>Total Fare:</strong> ${ticketInfo.totalFare} Pesos</p>
+                    `;
+                } else {
+                    document.getElementById('ticket-details').innerHTML = '<p>No reservation found.</p>';
+                }
+            } catch (e) {
+                document.getElementById('ticket-details').innerHTML = '<p>An error occurred while retrieving your ticket.</p>';
+                console.error("Error retrieving from localStorage: ", e);
+            }
+        });
+    </script>
+</body>
+</html>
